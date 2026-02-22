@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderWorld – Explore The World</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <i class="fas fa-globe-americas"></i> WanderWorld
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/destinations.html">Destinations</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li id="nav-user-links" style="display:none;">
+        <a href="pages/user-dashboard.html"><i class="fas fa-user-circle"></i> Dashboard</a>
+      </li>
+      <li id="nav-logout" style="display:none;">
+        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </li>
+      <li id="nav-auth-links">
+        <a href="pages/login.html" class="btn-nav-login">Login</a>
+      </li>
+      <li id="nav-auth-links2">
+        <a href="pages/register.html" class="btn-nav-register">Sign Up</a>
+      </li>
+    </ul>
+    <div class="nav-controls">
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1920&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1920&q=80')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge"><i class="fas fa-star"></i> #1 Travel Platform</span>
+    <h1>Discover Your Next<br/><span class="gradient-text">Dream Destination</span></h1>
+    <p>Explore breathtaking destinations around the world. Find hidden gems, plan perfect trips, and create memories that last a lifetime.</p>
+    <div class="hero-search">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="heroSearch" placeholder="Search destinations, countries, experiences..." />
+        <button onclick="heroSearchDestination()">Explore</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Destinations</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">50K+</span><span class="stat-label">Happy Travelers</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">120+</span><span class="stat-label">Countries</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll to explore</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Browse By Type</span>
+      <h2>Explore Categories</h2>
+      <p>Find destinations that match your travel style</p>
+    </div>
+    <div class="categories-grid">
+      <a href="pages/destinations.html?category=beach" class="category-card">
+        <div class="category-icon"><i class="fas fa-umbrella-beach"></i></div>
+        <h3>Beach</h3>
+        <span>48 Places</span>
+      </a>
+      <a href="pages/destinations.html?category=mountain" class="category-card">
+        <div class="category-icon"><i class="fas fa-mountain"></i></div>
+        <h3>Mountain</h3>
+        <span>36 Places</span>
+      </a>
+      <a href="pages/destinations.html?category=city" class="category-card">
+        <div class="category-icon"><i class="fas fa-city"></i></div>
+        <h3>City</h3>
+        <span>72 Places</span>
+      </a>
+      <a href="pages/destinations.html?category=cultural" class="category-card">
+        <div class="category-icon"><i class="fas fa-landmark"></i></div>
+        <h3>Cultural</h3>
+        <span>55 Places</span>
+      </a>
+      <a href="pages/destinations.html?category=adventure" class="category-card">
+        <div class="category-icon"><i class="fas fa-hiking"></i></div>
+        <h3>Adventure</h3>
+        <span>41 Places</span>
+      </a>
+      <a href="pages/destinations.html?category=nature" class="category-card">
+        <div class="category-icon"><i class="fas fa-leaf"></i></div>
+        <h3>Nature</h3>
+        <span>63 Places</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED DESTINATIONS -->
+<section class="featured-section" id="destinations">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Top Picks</span>
+      <h2>Featured Destinations</h2>
+      <p>Handpicked destinations loved by our community of travelers</p>
+    </div>
+    <div class="destination-grid" id="featuredDestinations">
+      <!-- Filled by JS -->
+    </div>
+    <div class="text-center mt-40">
+      <a href="pages/destinations.html" class="btn-primary">
+        View All Destinations <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Why Choose Us</span>
+      <h2>Everything You Need to Travel Smart</h2>
+      <p>Our platform makes exploring the world easier and more enjoyable</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <h3>Curated Destinations</h3>
+        <p>Every destination is handpicked and verified by our expert travel team for quality and authenticity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+        <h3>Save Favorites</h3>
+        <p>Build your personal travel wishlist by saving your favorite destinations for future trips.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-star"></i></div>
+        <h3>Ratings & Reviews</h3>
+        <p>Read authentic reviews and ratings from real travelers to make informed decisions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Mobile Friendly</h3>
+        <p>Access all features seamlessly on any device — desktop, tablet, or smartphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER / CTA SECTION -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Start Your Journey Today</h2>
+      <p>Join thousands of travelers discovering the world's most beautiful places</p>
+      <div class="cta-actions">
+        <a href="pages/register.html" class="btn-primary">Create Free Account</a>
+        <a href="pages/destinations.html" class="btn-secondary-outline">Browse Destinations</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-grid">
+        <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=600&q=80" alt="Travel" class="about-img-main" />
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Beach" class="about-img-secondary" />
+      </div>
+      <div class="about-content">
+        <span class="section-tag">About WanderWorld</span>
+        <h2>Your Trusted Travel Companion Since 2020</h2>
+        <p>WanderWorld is more than just a travel information platform. We are a community of passionate explorers dedicated to helping you discover the world's most incredible destinations.</p>
+        <p>From pristine beaches to towering mountains, vibrant cities to tranquil countryside — we curate the best travel experiences for every type of adventurer.</p>
+        <div class="about-features">
+          <div class="about-feature"><i class="fas fa-check-circle"></i> Expert curated content</div>
+          <div class="about-feature"><i class="fas fa-check-circle"></i> Real traveler reviews</div>
+          <div class="about-feature"><i class="fas fa-check-circle"></i> Updated destination info</div>
+          <div class="about-feature"><i class="fas fa-check-circle"></i> 24/7 community support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><i class="fas fa-globe-americas"></i> WanderWorld</a>
+        <p>Helping travelers discover the world's most beautiful destinations since 2020.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="pages/destinations.html">All Destinations</a></li>
+          <li><a href="pages/destinations.html?category=beach">Beach Getaways</a></li>
+          <li><a href="pages/destinations.html?category=mountain">Mountain Treks</a></li>
+          <li><a href="pages/destinations.html?category=city">City Breaks</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="pages/login.html">Login</a></li>
+          <li><a href="pages/register.html">Sign Up</a></li>
+          <li><a href="pages/user-dashboard.html">Dashboard</a></li>
+          <li><a href="pages/favorites.html">Favorites</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Admin</h4>
+        <ul>
+          <li><a href="pages/admin-login.html">Admin Login</a></li>
+          <li><a href="pages/admin-dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 WanderWorld. All rights reserved. Built with <i class="fas fa-heart" style="color:#e74c3c"></i> for explorers.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/slider.js"></script>
+</body>
+</html>
