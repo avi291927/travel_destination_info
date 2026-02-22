@@ -32,15 +32,5 @@ This project uses:
 	•	JavaScript
 	•	GitHub Pages for deployment
 
-  
-📂 Project Structure
-travel_destination_info/
-├── index.html              # Main landing page
-├── destinations.html       # Destination listing
-├── features.html           # Features overview
-├── about.html              # About the platform
-├── assets/                 # Images, icons, etc.
-├── styles/                 # CSS stylesheets
-└── scripts/                # JavaScript functions
 
 
