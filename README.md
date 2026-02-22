@@ -32,5 +32,5 @@ This project uses:
 	•	JavaScript
 	•	GitHub Pages for deployment
 
-
+.
 
