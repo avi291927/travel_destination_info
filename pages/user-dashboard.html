@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard – WanderWorld</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="portal-body">
+
+<div class="portal-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="logo sidebar-logo"><i class="fas fa-globe-americas"></i> WanderWorld</a>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-username" id="sidebarUsername">User</span>
+        <span class="sidebar-role">Traveler</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="user-dashboard.html" class="sidebar-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="favorites.html" class="sidebar-link"><i class="fas fa-heart"></i> My Favorites</a>
+      <a href="profile.html" class="sidebar-link"><i class="fas fa-user-edit"></i> My Profile</a>
+      <a href="destinations.html" class="sidebar-link"><i class="fas fa-map-marked-alt"></i> Explore</a>
+      <a href="#" class="sidebar-link" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="portal-main">
+    <div class="portal-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="portal-topbar-title">
+        <h2>My Dashboard</h2>
+        <span id="welcomeMsg">Welcome back!</span>
+      </div>
+      <div class="portal-topbar-actions">
+        <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+        <a href="destinations.html" class="btn-primary btn-sm"><i class="fas fa-compass"></i> Explore</a>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <!-- Stats Row -->
+      <div class="stats-row" id="userStats">
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: linear-gradient(135deg,#667eea,#764ba2)"><i class="fas fa-heart"></i></div>
+          <div class="stat-card-info">
+            <span class="stat-card-num" id="favCount">0</span>
+            <span class="stat-card-label">Saved Favorites</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: linear-gradient(135deg,#f093fb,#f5576c)"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="stat-card-info">
+            <span class="stat-card-num">500+</span>
+            <span class="stat-card-label">Available Destinations</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: linear-gradient(135deg,#4facfe,#00f2fe)"><i class="fas fa-globe"></i></div>
+          <div class="stat-card-info">
+            <span class="stat-card-num">120+</span>
+            <span class="stat-card-label">Countries</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background: linear-gradient(135deg,#43e97b,#38f9d7)"><i class="fas fa-star"></i></div>
+          <div class="stat-card-info">
+            <span class="stat-card-num">Top</span>
+            <span class="stat-card-label">Recommended For You</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Destinations Preview -->
+      <div class="portal-section">
+        <div class="portal-section-header">
+          <h3><i class="fas fa-heart"></i> My Saved Destinations</h3>
+          <a href="favorites.html" class="btn-text">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="destination-grid" id="savedDestinations">
+          <!-- Filled by JS -->
+        </div>
+        <div class="empty-state" id="noSaved" style="display:none;">
+          <i class="fas fa-heart-broken"></i>
+          <h4>No saved destinations yet</h4>
+          <p>Start exploring and save your favorite places!</p>
+          <a href="destinations.html" class="btn-primary">Explore Destinations</a>
+        </div>
+      </div>
+
+      <!-- Recommended Section -->
+      <div class="portal-section">
+        <div class="portal-section-header">
+          <h3><i class="fas fa-compass"></i> Recommended For You</h3>
+          <a href="destinations.html" class="btn-text">See All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="destination-grid" id="recommendedDestinations">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/user-portal.js"></script>
+</body>
+</html>

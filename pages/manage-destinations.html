@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Destinations – WanderWorld Admin</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="portal-body admin-portal">
+
+<div class="portal-layout">
+  <aside class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="logo sidebar-logo"><i class="fas fa-globe-americas"></i> WanderWorld</a>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar admin-avatar"><i class="fas fa-shield-alt"></i></div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-username">Administrator</span>
+        <span class="sidebar-role admin-role"><i class="fas fa-crown"></i> Admin</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="manage-destinations.html" class="sidebar-link active"><i class="fas fa-map-marked-alt"></i> Destinations</a>
+      <a href="manage-users.html" class="sidebar-link"><i class="fas fa-users"></i> Users</a>
+      <div class="sidebar-divider"></div>
+      <a href="../index.html" class="sidebar-link"><i class="fas fa-external-link-alt"></i> View Site</a>
+      <a href="#" class="sidebar-link" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-topbar admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="portal-topbar-title">
+        <h2><i class="fas fa-map-marked-alt"></i> Manage Destinations</h2>
+        <span>Add, edit, or remove travel destinations</span>
+      </div>
+      <div class="portal-topbar-actions">
+        <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+        <button class="btn-primary btn-sm" onclick="openAddModal()"><i class="fas fa-plus"></i> Add New</button>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <div class="table-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="adminSearch" placeholder="Search destinations..." oninput="adminSearchDestinations()" />
+          </div>
+          <div class="table-filter">
+            <select id="adminCategoryFilter" onchange="adminSearchDestinations()">
+              <option value="">All Categories</option>
+              <option value="beach">Beach</option>
+              <option value="mountain">Mountain</option>
+              <option value="city">City</option>
+              <option value="cultural">Cultural</option>
+              <option value="adventure">Adventure</option>
+              <option value="nature">Nature</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="alert alert-success" id="adminAlert" style="display:none;"></div>
+
+        <div class="table-responsive">
+          <table class="admin-table" id="destManageTable">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="destManageBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span id="tableCount">0 destinations</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ADD / EDIT DESTINATION MODAL -->
+<div class="modal-overlay" id="destModal" style="display:none;">
+  <div class="modal modal-large">
+    <div class="modal-header">
+      <h3 id="destModalTitle"><i class="fas fa-plus"></i> Add New Destination</h3>
+      <button class="modal-close" onclick="closeDestModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="destForm" onsubmit="saveDestination(event)">
+        <input type="hidden" id="destId" value="" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Destination Name *</label>
+            <input type="text" id="destName" placeholder="e.g. Maldives Islands" required />
+          </div>
+          <div class="form-group">
+            <label>Country *</label>
+            <input type="text" id="destCountry" placeholder="e.g. Maldives" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="destCategory" required>
+              <option value="">Select category</option>
+              <option value="beach">Beach</option>
+              <option value="mountain">Mountain</option>
+              <option value="city">City</option>
+              <option value="cultural">Cultural</option>
+              <option value="adventure">Adventure</option>
+              <option value="nature">Nature</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Rating (1-5) *</label>
+            <input type="number" id="destRating" min="1" max="5" step="0.1" placeholder="e.g. 4.8" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Image URL *</label>
+          <input type="url" id="destImage" placeholder="https://images.unsplash.com/..." required />
+          <small>Use an Unsplash or direct image URL</small>
+        </div>
+        <div class="form-group">
+          <label>Short Description *</label>
+          <input type="text" id="destShortDesc" placeholder="Brief one-line description" required maxlength="120" />
+        </div>
+        <div class="form-group">
+          <label>Full Description *</label>
+          <textarea id="destDescription" rows="4" placeholder="Detailed destination description..." required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Best Time to Visit</label>
+            <input type="text" id="destBestTime" placeholder="e.g. November to April" />
+          </div>
+          <div class="form-group">
+            <label>Temperature</label>
+            <input type="text" id="destTemp" placeholder="e.g. 25-32°C" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Highlights (comma-separated)</label>
+          <input type="text" id="destHighlights" placeholder="e.g. Crystal clear waters, Coral reefs, Luxury resorts" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeDestModal()">Cancel</button>
+          <button type="submit" class="btn-primary" id="destSubmitBtn">
+            <i class="fas fa-save"></i> Save Destination
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-overlay" id="deleteModal" style="display:none;">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3><i class="fas fa-trash"></i> Confirm Delete</h3>
+      <button class="modal-close" onclick="closeDeleteModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong id="deleteDestName"></strong>? This action cannot be undone.</p>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn-danger" onclick="confirmDelete()"><i class="fas fa-trash"></i> Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/manage-destinations.js"></script>
+</body>
+</html>

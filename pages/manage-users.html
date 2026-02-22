@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users – WanderWorld Admin</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="portal-body admin-portal">
+
+<div class="portal-layout">
+  <aside class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="logo sidebar-logo"><i class="fas fa-globe-americas"></i> WanderWorld</a>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar admin-avatar"><i class="fas fa-shield-alt"></i></div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-username">Administrator</span>
+        <span class="sidebar-role admin-role"><i class="fas fa-crown"></i> Admin</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="manage-destinations.html" class="sidebar-link"><i class="fas fa-map-marked-alt"></i> Destinations</a>
+      <a href="manage-users.html" class="sidebar-link active"><i class="fas fa-users"></i> Users</a>
+      <div class="sidebar-divider"></div>
+      <a href="../index.html" class="sidebar-link"><i class="fas fa-external-link-alt"></i> View Site</a>
+      <a href="#" class="sidebar-link" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-topbar admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="portal-topbar-title">
+        <h2><i class="fas fa-users"></i> Manage Users</h2>
+        <span>View and manage registered users</span>
+      </div>
+      <div class="portal-topbar-actions">
+        <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <div class="table-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="userSearch" placeholder="Search users..." oninput="searchUsers()" />
+          </div>
+        </div>
+
+        <div class="alert alert-success" id="userAlert" style="display:none;"></div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Favorites</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span id="userTableCount">0 users</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- DELETE USER CONFIRM MODAL -->
+<div class="modal-overlay" id="deleteUserModal" style="display:none;">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3><i class="fas fa-user-times"></i> Confirm Delete</h3>
+      <button class="modal-close" onclick="closeDeleteUserModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete user <strong id="deleteUserName"></strong>? This cannot be undone.</p>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeDeleteUserModal()">Cancel</button>
+        <button class="btn-danger" onclick="confirmDeleteUser()"><i class="fas fa-user-times"></i> Delete User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/manage-users.js"></script>
+</body>
+</html>
