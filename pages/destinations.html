@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations – WanderWorld</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo"><span class="logo-icon">W</span> WanderWorld</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="destinations.html" class="active">Destinations</a></li>
+      <li id="nav-user-links" style="display:none;"><a href="user-dashboard.html"><i class="fas fa-user-circle"></i> My Trips</a></li>
+      <li id="nav-logout" style="display:none;"><a href="#" onclick="logoutUser()">Logout</a></li>
+      <li id="nav-auth-links"><a href="login.html" class="btn-nav-login">Sign In</a></li>
+      <li id="nav-auth-links2"><a href="register.html" class="btn-nav-register">Join Now</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=80')">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1>Explore Destinations</h1>
+    <p>Find your next adventure from our community-curated collection</p>
+  </div>
+</section>
+
+<section class="destinations-page">
+  <div class="container">
+    <div class="filter-bar">
+      <div class="search-filter">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by name or country..." oninput="filterDestinations()" />
+      </div>
+      <div class="filter-controls">
+        <select id="categoryFilter" onchange="filterDestinations()">
+          <option value="">All Categories</option>
+          <option value="beach">Beach</option>
+          <option value="mountain">Mountain</option>
+          <option value="city">City</option>
+          <option value="cultural">Cultural</option>
+          <option value="adventure">Adventure</option>
+          <option value="nature">Nature</option>
+        </select>
+        <select id="ratingFilter" onchange="filterDestinations()">
+          <option value="">All Ratings</option>
+          <option value="4.5">4.5+</option>
+          <option value="4.0">4.0+</option>
+          <option value="3.5">3.5+</option>
+        </select>
+        <select id="sortFilter" onchange="filterDestinations()">
+          <option value="default">Sort By</option>
+          <option value="rating">Top Rated</option>
+          <option value="name">Name A–Z</option>
+          <option value="country">Country</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo">Showing all destinations</div>
+
+    <div class="destination-grid" id="destinationsGrid">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="no-results" id="noResults" style="display:none;">
+      <i class="fas fa-search"></i>
+      <h3>No destinations found</h3>
+      <p>Try adjusting your search or filters</p>
+      <button onclick="clearFilters()" class="btn-primary">Clear Filters</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo"><span class="logo-icon">W</span> WanderWorld</a>
+        <p>Your next trip starts here.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="login.html">Sign In</a></li>
+          <li><a href="register.html">Join Now</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 WanderWorld. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/destinations.js"></script>
+<script src="../js/animations.js"></script>
+</body>
+</html>

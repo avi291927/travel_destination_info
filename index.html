@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderWorld – Best Destinations to Visit</title>
+  <meta name="description" content="Discover the world's best travel destinations, curated by real travelers. Explore beaches, mountains, cities, and hidden gems." />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+<!-- Prevent dark-mode flash: apply class before paint -->
+<script>
+  // If dark mode was stuck on, this ensures the page always starts in light mode
+  // Users can re-enable it with the toggle button
+  if (localStorage.getItem('ww_darkmode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+</script>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">W</span> WanderWorld
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/destinations.html">Destinations</a></li>
+      <li><a href="#best-of">Best Of</a></li>
+      <li><a href="#about">About</a></li>
+      <li id="nav-user-links" style="display:none;">
+        <a href="pages/user-dashboard.html"><i class="fas fa-user-circle"></i> My Trips</a>
+      </li>
+      <li id="nav-logout" style="display:none;">
+        <a href="#" onclick="logoutUser()">Logout</a>
+      </li>
+      <li id="nav-auth-links">
+        <a href="pages/login.html" class="btn-nav-login">Sign In</a>
+      </li>
+      <li id="nav-auth-links2">
+        <a href="pages/register.html" class="btn-nav-register">Join Now</a>
+      </li>
+    </ul>
+    <div class="nav-controls">
+      <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION – clean editorial style -->
+<section class="hero" id="home">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide active" style="background-image: url('images/hero-1.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/hero-2.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/hero-3.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/hero-4.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Best of the Best<br/>Destinations</h1>
+    <p>Our Travelers' Choice award winners, based on a full year of reviews from people who've been there.</p>
+    <div class="hero-search">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="heroSearch" placeholder="Where do you want to go?" />
+        <button onclick="heroSearchDestination()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+<!-- CATEGORY TABS – clean horizontal pills like TripAdvisor -->
+<section class="categories-section">
+  <div class="container">
+    <div class="category-tabs">
+      <a href="pages/destinations.html?category=beach" class="category-tab">
+        <i class="fas fa-umbrella-beach"></i> Beaches
+      </a>
+      <a href="pages/destinations.html?category=mountain" class="category-tab">
+        <i class="fas fa-mountain"></i> Mountains
+      </a>
+      <a href="pages/destinations.html?category=city" class="category-tab">
+        <i class="fas fa-city"></i> Cities
+      </a>
+      <a href="pages/destinations.html?category=cultural" class="category-tab">
+        <i class="fas fa-landmark"></i> Cultural
+      </a>
+      <a href="pages/destinations.html?category=adventure" class="category-tab">
+        <i class="fas fa-hiking"></i> Adventure
+      </a>
+      <a href="pages/destinations.html?category=nature" class="category-tab">
+        <i class="fas fa-leaf"></i> Nature
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING / BEST OF DESTINATIONS – numbered list style like TripAdvisor -->
+<section class="featured-section" id="best-of">
+  <div class="container">
+    <div class="section-header-left">
+      <h2>Travelers' Top Destinations</h2>
+      <p>These are the places our community can't stop talking about — and for good reason.</p>
+    </div>
+    <div class="destination-grid" id="featuredDestinations">
+      <!-- Filled by JS -->
+    </div>
+    <div class="see-all-wrap">
+      <a href="pages/destinations.html" class="btn-see-all">
+        See all destinations <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WANDERWORLD – simplified, no feature-icon gradients -->
+<section class="why-section" id="features">
+  <div class="container">
+    <div class="section-header-left">
+      <h2>Why people use WanderWorld</h2>
+      <p>We make it easy to find your next trip, no matter your style.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-number">01</div>
+        <h3>Real Reviews</h3>
+        <p>Every rating comes from someone who's actually been there. No paid placements, no fake reviews.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-number">02</div>
+        <h3>Save & Plan</h3>
+        <p>Bookmark the places that catch your eye. We'll keep them safe until you're ready to go.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-number">03</div>
+        <h3>Curated Picks</h3>
+        <p>We work with local experts to surface the best each destination has to offer.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-number">04</div>
+        <h3>Works Everywhere</h3>
+        <p>Phone, tablet, or laptop — your trips and lists are always with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION – clean, flat, editorial -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to explore?</h2>
+      <p>Join our community of travelers and start building your dream trip today.</p>
+      <div class="cta-actions">
+        <a href="pages/register.html" class="btn-primary">Create a free account</a>
+        <a href="pages/destinations.html" class="btn-outline">Browse destinations</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION – conversational, human -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-grid">
+        <img src="images/about-main.jpg" alt="Travelers exploring a new city" class="about-img-main" />
+        <img src="images/about-beach.jpg" alt="Beach sunset view" class="about-img-secondary" />
+      </div>
+      <div class="about-content">
+        <h2>We started this because we love to travel.</h2>
+        <p>WanderWorld began as a side project between a few friends who kept sharing travel tips in group chats. We figured — why not make it something anyone can use?</p>
+        <p>Today, we're a growing community of travelers who believe the best recommendations come from people, not algorithms. Every destination on here has been visited, vetted, and loved by someone in our community.</p>
+        <ul class="about-list">
+          <li><i class="fas fa-check"></i> All content is written by real travelers</li>
+          <li><i class="fas fa-check"></i> We update info regularly based on feedback</li>
+          <li><i class="fas fa-check"></i> No sponsored rankings — ever</li>
+          <li><i class="fas fa-check"></i> Free to use, no hidden fees</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER – clean, minimal, no admin links -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-icon">W</span> WanderWorld</a>
+        <p>Your next trip starts here. We help travelers find amazing destinations based on real reviews and honest recommendations.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="pages/destinations.html">All Destinations</a></li>
+          <li><a href="pages/destinations.html?category=beach">Beach Getaways</a></li>
+          <li><a href="pages/destinations.html?category=mountain">Mountain Treks</a></li>
+          <li><a href="pages/destinations.html?category=city">City Breaks</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="pages/login.html">Sign In</a></li>
+          <li><a href="pages/register.html">Create Account</a></li>
+          <li><a href="pages/user-dashboard.html">My Dashboard</a></li>
+          <li><a href="pages/favorites.html">Saved Places</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 WanderWorld. Made with care for travelers everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

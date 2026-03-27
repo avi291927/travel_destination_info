@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Favorites – WanderWorld</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/portal.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="portal-body">
+
+<div class="portal-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="logo sidebar-logo"><span class="logo-icon">W</span> WanderWorld</a>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-username" id="sidebarUsername">User</span>
+        <span class="sidebar-role">Traveler</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="user-dashboard.html" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="favorites.html" class="sidebar-link active"><i class="fas fa-heart"></i> My Favorites</a>
+      <a href="profile.html" class="sidebar-link"><i class="fas fa-user-edit"></i> My Profile</a>
+      <a href="destinations.html" class="sidebar-link"><i class="fas fa-map-marked-alt"></i> Explore</a>
+      <a href="#" class="sidebar-link" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="portal-topbar-title">
+        <h2><i class="fas fa-heart"></i> My Favorites</h2>
+        <span>Your saved destinations</span>
+      </div>
+      <div class="portal-topbar-actions">
+        <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="portal-section">
+        <div class="portal-section-header">
+          <h3>Saved Destinations (<span id="favTotalCount">0</span>)</h3>
+          <a href="destinations.html" class="btn-primary btn-sm"><i class="fas fa-plus"></i> Add More</a>
+        </div>
+        <div class="destination-grid" id="favoritesGrid"></div>
+        <div class="empty-state" id="noFavorites" style="display:none;">
+          <i class="fas fa-heart-broken"></i>
+          <h4>Your favorites list is empty</h4>
+          <p>Explore destinations and click the heart icon to save them here.</p>
+          <a href="destinations.html" class="btn-primary">Start Exploring</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/data.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/favorites.js"></script>
+<script src="../js/animations.js"></script>
+</body>
+</html>
